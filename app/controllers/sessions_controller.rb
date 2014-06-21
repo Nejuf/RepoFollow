@@ -23,4 +23,9 @@ class SessionsController < ApplicationController
     flash_message(:notice, "You have successfully signed in!")
     redirect_to root_path
   end
+
+  def destroy
+    session.delete :user_id
+    redirect_to root_path
+  end
 end

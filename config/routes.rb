@@ -4,4 +4,5 @@ RepoFollow::Application.routes.draw do
   get '/auth/github/callback', to: 'sessions#create'
 
   get '/sign_up', to: 'sessions#new'
+  get '/sign_out', to: 'sessions#destroy'
 end
