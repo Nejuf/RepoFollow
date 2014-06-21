@@ -1,0 +1,12 @@
+h1 Github Public Repositories
+ul
+  - @repos.each do |repo|
+    li= repo.full_name
+- if @link_first
+  = link_to 'First', @link_first
+- if @link_prev
+  = link_to 'Prev', @link_prev
+- if @link_next
+  = link_to 'Next', @link_next
+- if @link_last
+  = link_to 'Last', @link_last
