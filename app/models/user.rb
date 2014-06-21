@@ -5,6 +5,9 @@ class User < ActiveRecord::Base
 
   validates_uniqueness_of :github_uid
 
+  has_many :follow_repos
+  has_many :repos, through: :follow_repos
+
   def display_name
     nickname || name
   end
