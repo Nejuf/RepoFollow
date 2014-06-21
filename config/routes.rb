@@ -8,4 +8,7 @@ RepoFollow::Application.routes.draw do
 
   # Github
   get 'github/public_repos', to: 'github#public_repos'
+
+  # Repos
+  post 'repos/follow', to: 'repos#follow'
 end

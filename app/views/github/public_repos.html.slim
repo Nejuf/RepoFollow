@@ -3,8 +3,9 @@ ul
   - @repos.each do |repo|
     li
       = repo.full_name
-      span.js-link.js-follow-repo data-repo-id="#{repo.id}"
-        span.js-container follow
+      - unless following_repo?(repo.id)
+        span.js-link.js-follow-repo data-repo-id="#{repo.id}"
+          span.js-container follow
 
 - if @link_first
   = link_to 'First', @link_first

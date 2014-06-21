@@ -10,13 +10,14 @@ $(document).ready ()->
 
     $.ajax
       type: 'POST'
-      url: "/repo/#{repoId}/follow"
-      data: { }
+      url: "/repos/follow"
+      data: {'github_uid': repoId}
       beforeSend: (jqXHR, settings)->
         $target.find('.js-container').html('loading...') # TODO replace with spinner
 
       success: (data)->
-        $target.find('.js-container').html('unfollow')
+        # $target.find('.js-container').html('unfollow')
+        $target.remove() # TODO unfollow option
 
       error: (jqXHR, textStatus, errorThrown)->
         $target.find('.js-container').html('follow')

@@ -14,4 +14,11 @@ module GithubHelper
       @link_last.sub!(/^[^?]+/, replacement_path) if @link_last.present?
     end
   end
+
+  def following_repo?(github_uid)
+    repo = Repo.where(github_uid: github_uid).first
+    return false unless repo.present? # If we don't have a copy of the repo, then no one is following it
+    follow = FollowRepo.where(user_id: current_user.id, repo_id: repo.id).first
+    follow.present?
+  end
 end

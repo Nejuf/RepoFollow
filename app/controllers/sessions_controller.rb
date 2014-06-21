@@ -16,7 +16,7 @@ class SessionsController < ApplicationController
       user.nickname = auth_hash.info.nickname
       user.save!
 
-      session[:user_id] = user.id.to_s
+      session[:user_id] = user.id
     else
       raise "Unrecognized omniauth provider: #{auth_hash['provider']}"
     end
