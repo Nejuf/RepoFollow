@@ -14,6 +14,7 @@ end
 gem 'figaro', '~> 0.7.0'
 gem 'jquery-rails', '~> 3.1.0'
 gem 'omniauth-github', '~> 1.1.2'
+gem 'slim-rails', '~> 2.1.5'
 
 group :development, :test do
   gem 'bullet'
