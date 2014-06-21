@@ -11,3 +11,8 @@
  *= require_self
  *= require_tree .
  */
+
+.js-link {
+  cursor: pointer;
+  cursor: hand; //Some browsers use hand instead of pointer
+}
