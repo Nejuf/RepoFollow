@@ -11,9 +11,9 @@ class SessionsController < ApplicationController
       uid = auth_hash.uid
       user = User.where(github_uid: uid).first
       user ||= User.new(github_uid: uid)
-      # user.public_email = auth_hash.info.email
-      # user.name = auth_hash.info.name
-      # user.nickname = auth_hash.info.nickname
+      user.public_email = auth_hash.info.email
+      user.name = auth_hash.info.name
+      user.nickname = auth_hash.info.nickname
       user.save!
 
       session[:user_id] = user.id.to_s

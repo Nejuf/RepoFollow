@@ -11,14 +11,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140621035945) do
+ActiveRecord::Schema.define(:version => 20140621164824) do
 
   create_table "users", :force => true do |t|
-    t.string   "github_uid", :null => false
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string   "github_uid",   :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.string   "name"
+    t.string   "nickname"
+    t.string   "public_email"
+    t.string   "email"
   end
 
+  add_index "users", ["email"], :name => "index_users_on_email"
   add_index "users", ["github_uid"], :name => "index_users_on_github_uid", :unique => true
 
 end
