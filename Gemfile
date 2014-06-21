@@ -3,7 +3,6 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.13'
 gem 'mysql2', '~> 0.3.16'
 
-
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -13,8 +12,8 @@ group :assets do
 end
 
 gem 'figaro', '~> 0.7.0'
-
-gem 'jquery-rails'
+gem 'jquery-rails', '~> 3.1.0'
+gem 'omniauth-github', '~> 1.1.2'
 
 group :development, :test do
   gem 'bullet'
