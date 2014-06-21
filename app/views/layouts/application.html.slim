@@ -14,7 +14,8 @@ html
             - if current_user
               .float-right
                 = current_user.display_name
-                = link_to "Sign Out", sign_out_path
+                span.sign-out-link
+                  = link_to "Sign Out", sign_out_path
 
     section
       .ym-wrapper
