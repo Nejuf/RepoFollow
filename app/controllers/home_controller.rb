@@ -13,7 +13,13 @@ class HomeController < ApplicationController
     @feed_dates = []
 
     start_date.upto(end_date).each do |date|
-      @feed_dates << {date: date.to_s}
+      date_commits = []
+      current_user.followed_repos.each do |repo|
+        commits = Octokit.commits_on(repo.full_name, date.to_s)
+        date_commits += commits
+      end
+      # TODO Sort date_commits
+      @feed_dates << {date: date.to_s, commits: date_commits}
     end
 
     render 'index'
