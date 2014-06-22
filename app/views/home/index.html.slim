@@ -1,2 +1,13 @@
 | Here is your feed:
+- @feed_dates.reverse_each do |date_info|
+  hr
+  = date_info[:date]
+
+.page-nav
+  - if @older_url.present?
+    span.older-feed-link
+      = link_to 'Older', @older_url
+  - if @newer_url.present?
+    span.new-feed-link
+      = link_to 'Newer', @newer_url
 
