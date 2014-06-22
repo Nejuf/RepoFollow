@@ -5,10 +5,10 @@
   - date_info[:commits].each do |commit|
     div= commit.sha
     div= commit.url
-    div= commit.commit.author.name
-    div= commit.commit.author.email
-    div= commit.commit.message
-    div= commit.commit.comment_count
+    div= commit['commit.author.name']
+    div= commit['commit.author.email']
+    div= commit['commit.message']
+    div= commit['commit.comment_count']
 
 .page-nav
   - if @older_url.present?

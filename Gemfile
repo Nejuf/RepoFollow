@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.13'
 gem 'mysql2', '~> 0.3.16'
+gem 'mongoid', '~> 3.1.6'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -13,6 +14,7 @@ end
 
 gem 'figaro', '~> 0.7.0'
 gem 'jquery-rails', '~> 3.1.0'
+gem 'mongoid_rails_migrations', '~> 1.0.1'
 gem 'octokit', '~> 3.1.2'
 gem 'omniauth-github', '~> 1.1.2'
 gem 'slim-rails', '~> 2.1.5'
