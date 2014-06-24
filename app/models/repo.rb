@@ -7,4 +7,6 @@ class Repo < ActiveRecord::Base
 
   has_many :follow_repos
   has_many :followers, class_name: 'User', source: :user, through: :follow_repos
+
+  has_many :branches
 end

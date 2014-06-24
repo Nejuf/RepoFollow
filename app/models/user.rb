@@ -8,6 +8,9 @@ class User < ActiveRecord::Base
   has_many :follow_repos
   has_many :followed_repos, through: :follow_repos, class_name: 'Repo', source: :repo
 
+  has_many :follow_branches
+  has_many :followed_branches, through: :follow_branches, class_name: 'Branch', source: :branc
+
   def display_name
     nickname || name
   end
