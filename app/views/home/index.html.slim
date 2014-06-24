@@ -3,12 +3,18 @@
   hr
   = date_info[:date]
   - date_info[:commits].each do |commit|
-    div= commit.sha
-    div= commit.url
-    div= commit['commit.author.name']
-    div= commit['commit.author.email']
-    div= commit['commit.message']
-    div= commit['commit.comment_count']
+    .feed-item
+      .commit-time= commit['commit.author.date'].to_s(:time)
+      / TODO adjust commit time for user timezone
+      .commit-sha= link_to commit.sha, commit.html_url
+      .commit-author
+        .author-name= commit['commit.author.name']
+        span
+          '  -
+        .author-email= commit['commit.author.email']
+      .commit-message= commit['commit.message']
+      .commit-comment= link_to 'Comments:', commit.comments_url
+      .commit-comment-count= commit['commit.comment_count']
 
 .page-nav
   - if @older_url.present?

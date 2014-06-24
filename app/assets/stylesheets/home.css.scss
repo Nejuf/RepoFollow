@@ -10,3 +10,38 @@
 .page-nav {
   text-align: center;
 }
+
+.feed-item {
+  background-color: rgb(231, 231, 231);
+  padding: 10px;
+  margin-top: 10px;
+
+  .commit-time,
+  .commit-sha,
+  .author-name,
+  .author-email,
+  .commit-comment,
+  .commit-comment-count {
+    display: inline-block;
+  }
+
+  .commit-message {
+    font-size: 1.6em;
+  }
+
+  .commit-author {
+    padding-top: 4px;
+    padding-top: 4px;
+    color: rgb(173, 173, 173);
+  }
+
+  .commit-message {
+    padding-top: 6px;
+    padding-bottom: 6px;
+  }
+
+  .commit-sha,
+  .commit-comment-count {
+    margin-left: 8px;
+  }
+}
