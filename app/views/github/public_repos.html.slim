@@ -15,10 +15,10 @@ ul
           span.js-container follow
 
 - if @link_first
-  = link_to 'First', @link_first
+  = link_to 'First', @link_first, class: 'pagination-link'
 - if @link_prev
-  = link_to 'Prev', @link_prev
+  = link_to 'Prev', @link_prev, class: 'pagination-link'
 - if @link_next
-  = link_to 'Next', @link_next
+  = link_to 'Next', @link_next, class: 'pagination-link'
 - if @link_last
-  = link_to 'Last', @link_last
+  = link_to 'Last', @link_last, class: 'pagination-link'

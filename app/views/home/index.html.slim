@@ -13,8 +13,8 @@
 .page-nav
   - if @older_url.present?
     span.older-feed-link
-      = link_to 'Older', @older_url
+      = link_to 'Older', @older_url, class: 'pagination-link'
   - if @newer_url.present?
     span.new-feed-link
-      = link_to 'Newer', @newer_url
+      = link_to 'Newer', @newer_url, class: 'pagination-link'
 
