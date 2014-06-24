@@ -14,7 +14,7 @@ end
 
 gem 'figaro', '~> 0.7.0'
 gem 'jquery-rails', '~> 3.1.0'
-gem 'mongoid_rails_migrations', '~> 1.0.1'
+
 gem 'octokit', '~> 3.1.2'
 gem 'omniauth-github', '~> 1.1.2'
 gem 'slim-rails', '~> 2.1.5'
