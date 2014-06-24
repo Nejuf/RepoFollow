@@ -5,3 +5,14 @@
 .follow-repo {
   padding-left: 10px;
 }
+
+.git-repo-searchform {
+  float: none;
+  display: block;
+  padding: 0 0 1em 0;
+
+  .ym-searchbutton {
+    background: #5f5f5f;
+    margin-left: 6px;
+  }
+}

@@ -7,8 +7,8 @@ RepoFollow::Application.routes.draw do
   get '/sign_out', to: 'sessions#destroy'
 
   # Github
-  get 'github/public_repos', to: 'github#public_repos'
+  get '/github/public_repos', to: 'github#public_repos'
 
   # Repos
-  post 'repos/follow', to: 'repos#follow'
+  post '/repos/follow', to: 'repos#follow'
 end

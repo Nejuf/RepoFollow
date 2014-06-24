@@ -10,8 +10,11 @@ html
     header
       .ym-wrapper
         .ym-wbox
-          .nav
+          .nav.ym-hlist
             - if current_user
+              ul
+                li= link_to "Feed", root_path
+                li= link_to "Browse Repos", github_public_repos_path
               .float-right
                 = current_user.display_name
                 span.sign-out-link

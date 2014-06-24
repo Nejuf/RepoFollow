@@ -1,4 +1,11 @@
 h1 Github Public Repositories
+
+div
+
+  = form_tag({controller: 'github', action: 'public_repos'}, method: "get", class: "ym-searchform git-repo-searchform") do
+    input.ym-searchfield type="search" name="search" placeholder="Search..."
+    input.ym-searchbutton type="submit" value="Search"
+
 ul
   - @repos.each do |repo|
     li
