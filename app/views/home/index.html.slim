@@ -1,26 +1,35 @@
-| Here is your feed:
-- @feed_dates.reverse_each do |date_info|
-  hr
-  = date_info[:date]
-  - date_info[:commits].reverse_each do |commit|
-    .feed-item
-      .commit-time= commit['commit.author.date'].to_s(:time)
-      / TODO adjust commit time for user timezone
-      .commit-sha= link_to commit.sha, commit.html_url
-      .commit-author
-        .author-name= commit['commit.author.name']
-        span
-          '  -
-        .author-email= commit['commit.author.email']
-      .commit-message= commit['commit.message']
-      .commit-comment= link_to 'Comments:', commit.comments_url
-      .commit-comment-count= commit['commit.comment_count']
+- if current_user.followed_repos.count == 0
+  div You don't appear to be following any repositories.
+  div
+    = link_to 'Browse the public repos', github_public_repos_path
+    |  to start following.
+- else
+  - if !has_feed_entries?
+    div
+      = showing_recent_activity? ? "There's no recent activity to show." : "There's no activity to show in this date range."
+  - else
+    - @feed_dates.reverse_each do |date_info|
+      hr
+      = date_info[:date]
+      - date_info[:commits].reverse_each do |commit|
+        .feed-item
+          .commit-time= commit['commit.author.date'].to_s(:time)
+          / TODO adjust commit time for user timezone
+          .commit-sha= link_to commit.sha, commit.html_url
+          .commit-author
+            .author-name= commit['commit.author.name']
+            span
+              '  -
+            .author-email= commit['commit.author.email']
+          .commit-message= commit['commit.message']
+          .commit-comment= link_to 'Comments:', commit.comments_url
+          .commit-comment-count= commit['commit.comment_count']
 
-.page-nav
-  - if @older_url.present?
-    span.older-feed-link
-      = link_to 'Older', @older_url, class: 'pagination-link'
-  - if @newer_url.present?
-    span.new-feed-link
-      = link_to 'Newer', @newer_url, class: 'pagination-link'
+  .page-nav
+    - if @older_url.present?
+      span.older-feed-link
+        = link_to 'Older', @older_url, class: 'pagination-link'
+    - if @newer_url.present?
+      span.new-feed-link
+        = link_to 'Newer', @newer_url, class: 'pagination-link'
 
