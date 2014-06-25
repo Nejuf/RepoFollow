@@ -1,11 +1,12 @@
 - if current_user.followed_repos.count == 0
-  div You don't appear to be following any repositories.
-  div
-    = link_to 'Browse the public repos', github_public_repos_path
-    |  to start following.
+  .feed-message
+    div You don't appear to be following any repositories.
+    div
+      = link_to 'Browse the public repos', github_public_repos_path
+      |  to start following.
 - else
   - if !has_feed_entries?
-    div
+    .feed-message
       = showing_recent_activity? ? "There's no recent activity to show." : "There's no activity to show in this date range."
   - else
     - @feed_dates.reverse_each do |date_info|

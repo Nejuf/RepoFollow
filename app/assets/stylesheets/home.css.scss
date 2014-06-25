@@ -45,3 +45,8 @@
     margin-left: 8px;
   }
 }
+
+.feed-message {
+  @extend .center;
+  font-size: 1.4em;
+}
