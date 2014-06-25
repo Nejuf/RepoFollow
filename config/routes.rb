@@ -11,5 +11,8 @@ RepoFollow::Application.routes.draw do
 
   # Repos
   post '/repos/follow', to: 'repos#follow'
-  resources :repos, only: [:index, :edit]
+  resources :repos, only: [:index, :edit] do
+    post '/unfollow_branch', to: 'repos#unfollow_branch'
+    post '/follow_branch', to: 'repos#follow_branch'
+  end
 end

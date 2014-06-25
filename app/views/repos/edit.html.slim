@@ -1,5 +1,17 @@
 h2= @repo.full_name
 h3 Followed Branches:
-ul
-  - @branches.each do |branch|
-    li= branch.name
+ul.followed-branches
+  - @followed_branches.each do |branch|
+    li
+      = branch.name
+      = form_tag(repo_unfollow_branch_path(@repo), class: 'form-inline') do
+        input type="hidden" name="branch_name" value="#{branch.name}"
+        input type="submit" value="unfollow" class="button-link"
+hr
+ul.unfollowed-branches
+  - @unfollowed_branches.each do |branch|
+    li
+      = branch.name
+      = form_tag(repo_follow_branch_path(@repo), class: 'form-inline') do
+        input type="hidden" name="branch_name" value="#{branch.name}"
+        input type="submit" value="follow" class="button-link"

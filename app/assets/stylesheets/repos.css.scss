@@ -1,3 +1,19 @@
 // Place all the styles related to the Repos controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.form-inline {
+  display: inline-block;
+  padding-left: 6px;
+}
+
+.unfollowed-branches {
+  color: #A0A0A0;
+}
+
+.button-link {
+  @extend .js-link;
+  background: none;
+  border: none;
+  color: #6D6DA5;
+}
