@@ -19,7 +19,9 @@ class HomeController < ApplicationController
       current_user.followed_repos.each do |repo|
         date_commits += retrieve_commits(repo.full_name, date.to_s)
       end
-      # TODO Sort date_commits
+      date_commits.sort! do |d1, d2|
+        d1['commit.author.date'].to_s(:time) <=> d2['commit.author.date'].to_s(:time)
+      end
       @feed_dates << {date: date.to_s, commits: date_commits}
     end
 

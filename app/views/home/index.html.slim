@@ -2,7 +2,7 @@
 - @feed_dates.reverse_each do |date_info|
   hr
   = date_info[:date]
-  - date_info[:commits].each do |commit|
+  - date_info[:commits].reverse_each do |commit|
     .feed-item
       .commit-time= commit['commit.author.date'].to_s(:time)
       / TODO adjust commit time for user timezone
