@@ -12,8 +12,20 @@ class ReposController < ApplicationController
     if follow.save
       render json: {}, status: :ok
     else
-      render json: {errors: @follow.errors}
+      render json: {errors: follow.errors}
     end
+  end
+
+  def unfollow
+    @repo = Repo.where(github_uid: params[:github_uid]).first
+    load_git_repo! unless @repo
+
+    follow = FollowRepo.where(repo_id: @repo.id, user_id: current_user.id).first
+
+    unless follow.nil? || follow.destroy
+      flash_message(:error, "Unable to stop following repository: #{@repo.full_name if @repo}")
+    end
+    redirect_to repos_path
   end
 
   def follow_branch
@@ -24,7 +36,7 @@ class ReposController < ApplicationController
     unfollow = UnfollowBranch.where(branch_id: branch.id, user_id: current_user.id).first
 
     unless unfollow.nil? || unfollow.destroy
-      flash_message(:error, "Could not follow branch: #{branch ? branch.name : ''}")
+      flash_message(:error, "Could not follow branch: #{branch.name if branch}")
     end
 
     invalidate_cache_commits(@repo.full_name, nil, true)

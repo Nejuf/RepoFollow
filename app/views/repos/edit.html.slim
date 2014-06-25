@@ -1,4 +1,8 @@
-h2= @repo.full_name
+h2.repo-title= @repo.full_name
+= form_tag(repos_unfollow_path, class: 'form-inline') do
+  input type="hidden" name="github_uid" value="#{@repo.github_uid}"
+  input type="submit" value="unfollow repository" class="button-link"
+
 h3 Followed Branches:
 ul.followed-branches
   - @followed_branches.each do |branch|
