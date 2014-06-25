@@ -22,17 +22,6 @@ ActiveRecord::Schema.define(:version => 20140624192227) do
 
   add_index "branches", ["repo_id"], :name => "index_branches_on_repo_id"
 
-  create_table "follow_branches", :force => true do |t|
-    t.integer  "user_id",    :null => false
-    t.integer  "branch_id",  :null => false
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  add_index "follow_branches", ["branch_id"], :name => "index_follow_branches_on_branch_id"
-  add_index "follow_branches", ["user_id", "branch_id"], :name => "index_follow_branches_on_user_id_and_branch_id", :unique => true
-  add_index "follow_branches", ["user_id"], :name => "index_follow_branches_on_user_id"
-
   create_table "follow_repos", :force => true do |t|
     t.integer  "user_id",    :null => false
     t.integer  "repo_id",    :null => false
@@ -53,6 +42,17 @@ ActiveRecord::Schema.define(:version => 20140624192227) do
   end
 
   add_index "repos", ["github_uid"], :name => "index_repos_on_github_uid", :unique => true
+
+  create_table "unfollow_branches", :force => true do |t|
+    t.integer  "user_id",    :null => false
+    t.integer  "branch_id",  :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "unfollow_branches", ["branch_id"], :name => "index_unfollow_branches_on_branch_id"
+  add_index "unfollow_branches", ["user_id", "branch_id"], :name => "index_unfollow_branches_on_user_id_and_branch_id", :unique => true
+  add_index "unfollow_branches", ["user_id"], :name => "index_unfollow_branches_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "github_uid",   :null => false

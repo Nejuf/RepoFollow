@@ -6,6 +6,6 @@ class Branch < ActiveRecord::Base
 
   belongs_to :repo
 
-  has_many :follow_branches
-  has_many :followers, class_name: 'User', source: :user, through: :follow_branches
+  has_many :unfollow_branches
+  has_many :unfollowers, class_name: 'User', source: :user, through: :unfollow_branches
 end
