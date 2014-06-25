@@ -26,6 +26,8 @@ class ReposController < ApplicationController
     unless unfollow.nil? || unfollow.destroy
       flash_message(:error, "Could not follow branch: #{branch ? branch.name : ''}")
     end
+
+    invalidate_cache_commits(@repo.full_name, nil, true)
     redirect_to edit_repo_path(@repo)
   end
 
@@ -40,6 +42,8 @@ class ReposController < ApplicationController
     unless unfollow.save
       flash_message(:error, "Could not unfollow branch: #{branch ? branch.name : ''}")
     end
+
+    invalidate_cache_commits(@repo.full_name, nil, true)
     redirect_to edit_repo_path(@repo)
   end
 

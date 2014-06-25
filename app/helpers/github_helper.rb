@@ -61,7 +61,7 @@ module GithubHelper
     if commits_cached?(repo_full_name, date_string)
       return GitCommit.where(repo_full_name: repo_full_name, date: date_string).entries
     else
-      commits = fetch_commits_from_github(repo_full_name)
+      commits = fetch_commits_from_github(repo_full_name, date_string)
 
       # Store the commits from the response as GitCommit objects in our Mongo database
       git_commits = commits.map do |commit|
@@ -91,7 +91,19 @@ module GithubHelper
     cache.save!
   end
 
-  def fetch_commits_from_github(repo_full_name)
+  def invalidate_cache_commits(repo_full_name, date_string_or_strings, all_dates=false)
+    cache = RepoCommitCache.where(repo_full_name: repo_full_name).first_or_initialize
+    if all_dates
+      cache.dates = []
+    elsif date_string_or_strings.is_a?(Array)
+      cache.dates = cache.dates - date_string_or_strings
+    else
+      cache.dates.delete(date_string)
+    end
+    cache.save!
+  end
+
+  def fetch_commits_from_github(repo_full_name, date_string)
     repo = Repo.where(full_name: repo_full_name).first
     raise "Repo #{repo_full_name} was not found." if repo.nil?
     unfollowed_branches = current_user.unfollowed_branches.where(repo_id: repo.id)
@@ -102,7 +114,7 @@ module GithubHelper
       followed_branches = load_git_repo_branches!(repo) - unfollowed_branches
       commits = {}
       followed_branches.each do |branch|
-        branch_commits = Octokit.commits(repo_full_name, sha: branch.sha)
+        branch_commits = Octokit.commits_on(repo_full_name, date_string, sha: branch.name)
         branch_commits.each do |commit|
           commits[commit.sha] = commit unless commits.key?(commit.sha)
         end
