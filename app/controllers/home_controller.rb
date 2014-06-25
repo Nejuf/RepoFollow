@@ -3,14 +3,16 @@ class HomeController < ApplicationController
 
   before_filter :authenticate_user
 
+  MAX_DATE_RANGE = 3
+
   def index
     end_date = params[:end] ? Date.parse(params[:end]) : Date.today
     end_date = Date.today if end_date > Date.today
-    start_date = params[:start] ? Date.parse(params[:start]) : end_date.prev_day(7)
-    start_date = end_date.prev_day(7) if start_date > end_date
+    start_date = params[:start] ? Date.parse(params[:start]) : end_date.prev_day(MAX_DATE_RANGE-1)
+    start_date = end_date.prev_day(MAX_DATE_RANGE-1) if start_date > end_date
 
-    @older_url = "/?start=#{start_date.prev_day(8)}&end=#{start_date.prev_day}" # TODO determine earliest feed date
-    @newer_url = "/?start=#{end_date.next_day}&end=#{end_date.next_day(8)}" if end_date < Date.today
+    @older_url = "/?start=#{start_date.prev_day(MAX_DATE_RANGE)}&end=#{start_date.prev_day}" if start_date > Date.parse('2005-04-07') #Git's initial release
+    @newer_url = "/?start=#{end_date.next_day}&end=#{end_date.next_day(MAX_DATE_RANGE)}" if end_date < Date.today
 
     @feed_dates = []
 
