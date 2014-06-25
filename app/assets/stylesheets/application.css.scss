@@ -25,10 +25,6 @@ body > header {
 
 .ym-wbox { padding: 10px; }
 
-.sign-out-link {
-  padding-left: 10px;
-  padding-right: 4px;
-}
 
 @import "github";
 @import "home";
@@ -37,4 +33,21 @@ body > header {
 
 .pagination-link {
   padding: 5px;
+}
+
+.user-nav {
+  @extend .float-right;
+  margin: 0;
+
+  padding-top: 13px;
+  padding-right: 4px;
+
+  .user-name {
+    color: #BEBEBE;
+  }
+
+  .sign-out-link {
+    padding-left: 10px;
+    padding-right: 4px;
+  }
 }
