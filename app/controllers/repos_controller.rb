@@ -68,7 +68,7 @@ class ReposController < ApplicationController
     @repo = Repo.find(params[:id])
     @branches = load_git_repo_branches!(@repo)
     @followed_branches = @branches - current_user.unfollowed_branches
-    @unfollowed_branches = current_user.unfollowed_branches
+    @unfollowed_branches = @branches - @followed_branches
     # TODO as an optimization, we could maintain a has_unfollowed_branches boolean on FollowRepo and only query branch following or activity scoping if it's true
     render 'edit'
   end
