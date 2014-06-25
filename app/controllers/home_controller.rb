@@ -29,6 +29,7 @@ class HomeController < ApplicationController
       return GitCommit.where(repo_full_name: repo_full_name, date: date_string).entries
     else
       commits = Octokit.commits_on(repo_full_name, date_string)
+      # TODO either turn on Octokit auto_paginate or fetch the remaining commits when amount exceeds per_page limit
       git_commits = commits.map do |commit|
         git_commit = GitCommit.where(sha: commit.sha).first || GitCommit.new
         # Must use to_attrs because Sawyer::Resource makes as_json and to_hash not recursively convert nested Sawyer::Resource objects

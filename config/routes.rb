@@ -11,4 +11,5 @@ RepoFollow::Application.routes.draw do
 
   # Repos
   post '/repos/follow', to: 'repos#follow'
+  resources :repos, only: [:index, :edit]
 end

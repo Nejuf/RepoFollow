@@ -15,6 +15,7 @@ html
               ul
                 li= link_to "Feed", root_path
                 li= link_to "Browse Repos", github_public_repos_path
+                li= link_to "My Repos", repos_path
               .float-right
                 = current_user.display_name
                 span.sign-out-link

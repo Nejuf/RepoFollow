@@ -1,0 +1,5 @@
+h1 My Followed Repositories
+
+ul
+  - @repos.each do |repo|
+    li = link_to repo.full_name, edit_repo_path(repo)
