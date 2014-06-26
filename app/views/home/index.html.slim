@@ -5,26 +5,10 @@
       = link_to 'Browse the public repos', github_public_repos_path
       |  to start following.
 - else
-  - if !has_feed_entries?
-    .feed-message
-      = showing_recent_activity? ? "There's no recent activity to show." : "There's no activity to show in this date range."
-  - else
-    - @feed_dates.reverse_each do |date_info|
-      hr
-      = date_info[:date]
-      - date_info[:commits].reverse_each do |commit|
-        .feed-item
-          .commit-time= commit['commit.author.date'].to_s(:time)
-          / TODO adjust commit time for user timezone
-          .commit-sha= link_to commit.sha, commit.html_url
-          .commit-author
-            .author-name= commit['commit.author.name']
-            span
-              '  -
-            .author-email= commit['commit.author.email']
-          .commit-message= commit['commit.message']
-          .commit-comment= link_to 'Comments:', commit.comments_url
-          .commit-comment-count= commit['commit.comment_count']
+  - @dates.reverse_each do |date|
+    hr
+    = date
+    .js-feed-date data-date="#{date}"
 
   .page-nav
     - if @older_url.present?

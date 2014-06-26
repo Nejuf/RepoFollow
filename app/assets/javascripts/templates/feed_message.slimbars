@@ -1,0 +1,19 @@
+.feed-item
+  .commit-time
+    | {{ timeFromDate commit.author.date }}
+  / TODO adjust commit time for user timezone
+  .commit-sha
+    a href="{{html_url}}" {{ sha }}
+  .commit-author
+    .author-name
+      | {{ commit.author.name }}
+    span
+      '  -
+    .author-email
+      | {{ commit.author.email }}
+  .commit-message
+    | {{{ commit.message }}}
+  .commit-comment
+    a href="{{comments_url}}" Comments:
+  .commit-comment-count
+    | {{ commit.comment_count }}

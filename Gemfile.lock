@@ -64,6 +64,11 @@ GEM
     figaro (0.7.0)
       bundler (~> 1.0)
       rails (>= 3, < 5)
+    handlebars_assets (0.17)
+      execjs (>= 1.2.9)
+      multi_json
+      sprockets (>= 2.0.3)
+      tilt
     hashie (2.1.2)
     hike (1.2.3)
     i18n (0.6.1)
@@ -114,6 +119,10 @@ GEM
       omniauth (~> 1.2)
     origin (1.1.0)
     polyglot (0.3.5)
+    pry (0.9.12.6)
+      coderay (~> 1.0)
+      method_source (~> 0.8)
+      slop (~> 3.4)
     pry (0.9.12.6-x86-mingw32)
       coderay (~> 1.0)
       method_source (~> 0.8)
@@ -218,6 +227,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   debugger
   figaro (~> 0.7.0)
+  handlebars_assets (~> 0.17)
   jquery-rails (~> 3.1.0)
   meta_request
   mongoid (~> 3.1.6)
